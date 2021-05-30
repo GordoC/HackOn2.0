@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "mood.cpp"
 #include "sleep.cpp"
@@ -7,38 +8,48 @@ using namespace std;
 
 class DayContents {
   private:
-    Sleep sleep;
-    Mood mood;
-    JournalEntry je;
+    Sleep sleepObj;
+    Mood moodObj;
+    JournalEntry jeObj;
+    bool null;
 
   public:
     DayContents(Sleep aSleep, Mood aMood, JournalEntry aJe) {
-      sleep = aSleep;
-      mood = aMood;
-      je = aJe;
+      sleepObj = aSleep;
+      moodObj = aMood;
+      jeObj = aJe;
+      null = false;
+    }
+
+    DayContents() {
+      null = true;
     }
 
     void setSleep(Sleep aSleep) {
-      sleep = aSleep;
+      sleepObj = aSleep;
     }
 
     Sleep getSleep() {
-      return sleep;
+      return sleepObj;
     }
 
     void setMood(Mood aMood) {
-      mood = aMood;
+      moodObj = aMood;
     }
 
     Mood getMood() {
-      return mood;
+      return moodObj;
     }
 
     void setJournalEntry(JournalEntry aJe) {
-      je = aJe;
+      jeObj = aJe;
     }
 
     JournalEntry getJournalEntry() {
-      return je;
+      return jeObj;
+    }
+
+    bool getNull() {
+      return null;
     }
 };

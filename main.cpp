@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -6,8 +7,8 @@
 #include <cctype>
 #include "messageManager.cpp"
 #include "calender.cpp"
-//#include "sleepTracker.cpp"
-//#include "moodTracker.cpp"
+#include "sleep.cpp"
+#include "mood.cpp"
 #include "reward.cpp"
 #include "dayContents.cpp"
 #include "journalEntry.cpp"
@@ -53,28 +54,31 @@ void whatMoodQuestion(string text) {
     }
 }
 
-// implement cout << "" << endl;
 // reply based on how long sleep inputed
-void minSleepReply(int minSleep) {
-  if (minSleep < 120) {
+void minSleepReply(int aMinSleep) {
+  if (aMinSleep < 120) {
     // very bad
-  } else if (minSleep < 300) {
+    cout << "The number of hours you have slept for should be much higher, otherwise it is bad for your body." << endl;
+  } else if (aMinSleep < 300) {
     // too less
-  } else if (minSleep < 480) {
+    cout << "The number of hours you have slept for should be a little higher." << endl;
+  } else if (aMinSleep < 480) {
     // avg
-  } else if (minSleep > 720) {
+    cout << "The number of hours you have slept for is just the right amount." << endl;
+  } else if (aMinSleep > 720) {
     // too much
+    cout << "The number of hours you have slept for can be reduced by a bit." << endl;
   }
 }
 
-
-// implement cout << "" << endl;
 // reply based on quality inputed
 void qualitySleepReply(int quality) {
   if (quality > 7) {
     // good
+    cout << "The quality of your sleep is looking great, keep it up!" << endl; 
   } else {
-    // try to have btter sleep enviroment
+    // try to have better sleep enviroment
+    cout << "Quality of sleep is very important.  Try to organize a better sleeping environment to feel better the next day." << endl;
   }
 }
 
@@ -95,6 +99,7 @@ void howMuchSleep(string text) {
 void howDayWent(string text) {
   string entry;
   cout << "What did you do" << text << " This journal entry will be kept for future you! So please try your best. You got this!" << endl;
+  cin.ignore(1000,'\n');
   getline(cin, entry);
   je = JournalEntry(entry);
   cout << "That seems like an intresting day!" << endl;
@@ -125,7 +130,7 @@ void init() {
   addDay(" today?");
   DayContents dc = DayContents(sleep, mood, je);
   calender.addDayContents(day, dc);
-  mm.checkUpQuestions(mood.getMood());
+  mm.checkUpQuestion(mood.getMood());
 }
 
 // delete a day in calender
@@ -209,6 +214,7 @@ void run() {
   char command;
 
   while(running) {
+    cin.ignore(1000,'\n');
     displayMenu();
     cin >> command;
     command = tolower(command);

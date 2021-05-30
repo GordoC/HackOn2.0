@@ -1,20 +1,21 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
 
 class Mood {
   private:
-  	string mood;
+  	string moodText;
   	string colour;
   
   public:
     Mood(string aMood) {
-        mood = aMood;
+        moodText = aMood;
         colour = whatColour(aMood);
     }
 
     Mood() {
-      mood = "";
+      moodText = "";
       colour = "";
     }
 
@@ -32,11 +33,11 @@ class Mood {
     }
 
   	void setMood(string text){
-  		mood = text;
+  		moodText = text;
     }
 
   	string getMood(){
-      return mood;
+      return moodText;
     }
   
   	void setColour(string text){
@@ -48,6 +49,6 @@ class Mood {
         
     // compares two Mood objects and return true or false depending if they are the same
     bool compare(Mood aMood) {
-        return mood == aMood.getMood() || colour == aMood.getColour() ; 
+        return moodText == aMood.getMood() || colour == aMood.getColour() ; 
     }
 };

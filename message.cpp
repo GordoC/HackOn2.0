@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -5,12 +6,14 @@ using namespace std;
 class Message {
   private:
   	string message;
-  	string mood;
   
   public:
-    Message(string aMessage, string aMood) {
+    Message(string aMessage) {
       message = aMessage;
-      mood = aMood;
+    }
+
+    Message() {
+      message = "";
     }
 
   	void setMessage(string text) {
@@ -19,14 +22,6 @@ class Message {
   
   	string getMessage() {
      	return message; 
-    }
-
-    void setMood(string aMood) {
-      mood = aMood;
-    }
-
-    string getMood() {
-      return mood;
     }
  	
 };
